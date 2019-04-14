@@ -24,6 +24,22 @@ class Module
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $menuName;
+
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $controller;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $action;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Permission", mappedBy="module", orphanRemoval=true)
      */
     private $permissions;
@@ -67,6 +83,62 @@ class Module
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMenuName()
+    {
+        return $this->menuName;
+    }
+
+    /**
+     * @param mixed $menuName
+     * @return Module
+     */
+    public function setMenuName($menuName)
+    {
+        $this->menuName = $menuName;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getController()
+    {
+        return $this->controller;
+    }
+
+    /**
+     * @param mixed $controller
+     * @return Module
+     */
+    public function setController($controller)
+    {
+        $this->controller = $controller;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+
+    /**
+     * @param mixed $action
+     * @return Module
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+        return $this;
+    }
+
+
 
     public function removePermission(Permission $permission): self
     {
