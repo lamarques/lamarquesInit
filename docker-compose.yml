@@ -1,0 +1,41 @@
+version: "3.1"
+services:
+  webserver:
+    image: lamarques/php
+    container_name: webserver
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db:db
+  db:
+    image: postgres
+    container_name: db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: lamarques
+      POSTGRES_USER: lamarques
+      POSTGRES_DB: lamarques
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "8080:80"
+    restart: always
+    depends_on:
+      - db
+    links:
+      - db:db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: rogerio@lamarques.com.br
+      PGADMIN_DEFAULT_PASSWORD: lamarques
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
