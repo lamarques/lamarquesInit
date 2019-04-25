@@ -1,0 +1,698 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.1" last-position="0,465" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="lamarques" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<sequence name="user_seq"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="user">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="40" y="420"/>
+	<column name="id" not-null="true" sequence="public.user_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="client_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="username" not-null="true">
+		<type name="varchar" length="180"/>
+	</column>
+	<column name="password" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="update_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="user_pkey" type="pk-constr" table="public.&quot;user&quot;">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="role_seq"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="role_type">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="340" y="300"/>
+	<column name="id" not-null="true" sequence="public.role_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="role_type" not-null="true">
+		<type name="varchar" length="80"/>
+	</column>
+	<column name="role_name" not-null="true">
+		<type name="varchar" length="80"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="role_type_pkey" type="pk-constr" table="public.role_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="user_roles_seq"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="user_roles">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="40" y="60"/>
+	<column name="id" not-null="true" sequence="public.user_roles_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="role_type_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="user_id">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="user_roles_pkey" type="pk-constr" table="public.user_roles">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="component_seq"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="componet">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="380" y="40"/>
+	<column name="id" not-null="true" sequence="public.component_seq">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="component_name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="component_route" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="menu_name" not-null="true">
+		<type name="varchar" length="0"/>
+	</column>
+	<column name="is_viewed" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="component_pkey" type="pk-constr" table="public.componet">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="component_id"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="role_type_component">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="760" y="60"/>
+	<column name="id" not-null="true" sequence="public.component_id">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="component_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="role_type_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="is_creator" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="is_reader" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="is_updater" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="is_deletator" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="is_adminitrator" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="is_configurator" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="component_pkey_1" type="pk-constr" table="public.role_type_component">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="client">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="600" y="440"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="client_name" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="individual_registration" not-null="true">
+		<type name="varchar" length="25"/>
+	</column>
+	<column name="telephone" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="client_pkey" type="pk-constr" table="public.client">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="client_unique" type="uq-constr" table="public.client">
+		<columns names="individual_registration" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="person_type_seq"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="person_type">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="540" y="960"/>
+	<column name="id" not-null="true" sequence="public.person_type_seq">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="person_type_name" not-null="true">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="person_type_acronym" not-null="true">
+		<type name="varchar" length="5"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="person_type_pkey" type="pk-constr" table="public.person_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<usertype name="genre_type" configuration="enumeration">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<enumeration values="Feminino,Maculino"/>
+</usertype>
+
+<table name="person">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="40" y="680"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="person_type_id" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="user_id" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="individual_registration" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="first_name" not-null="true">
+		<type name="varchar" length="255"/>
+		<comment><![CDATA[Nome ou Razão Social]]></comment>
+	</column>
+	<column name="middle_names">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="last_name" not-null="true">
+		<type name="varchar" length="255"/>
+		<comment><![CDATA[Sobrenome ou Nome Fantasia]]></comment>
+	</column>
+	<column name="general_registration">
+		<type name="varchar" length="40"/>
+		<comment><![CDATA[Documento de Identidade ou Inscrição Estadual]]></comment>
+	</column>
+	<column name="date_birth" not-null="true">
+		<type name="date" length="0"/>
+	</column>
+	<column name="genre" not-null="true">
+		<type name="public.genre_type" length="0"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="person_pkey" type="pk-constr" table="public.person">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+	<constraint name="person_unique" type="uq-constr" table="public.person">
+		<columns names="individual_registration" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<sequence name="partition_type_seq"
+	 start="1" increment="1"
+	 min-value="0" max-value="2147483647"
+	 cache="1" cycle="false">
+	<schema name="public"/>
+	<role name="postgres"/>
+</sequence>
+
+<table name="partition_type">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1060" y="680"/>
+	<column name="id" not-null="true" sequence="public.partition_type_seq">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="partition_type_name" not-null="true">
+		<type name="varchar" length="60"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="partition_type_pkey" type="pk-constr" table="public.partition_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="partition">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="580" y="700"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="person_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="client_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="partition_type_id" not-null="true">
+		<type name="int4" length="0"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="partition_pkey" type="pk-constr" table="public.partition">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="contact_type">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="540" y="1160"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="conatact_type_name">
+		<type name="varchar" length="50"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="contact_type_pkey" type="pk-constr" table="public.contact_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="contact">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="20" y="1080"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="person_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="contact_type_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="contact_value" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="contact_pkey" type="pk-constr" table="public.contact">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="contact_form">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Objetivo: configurar formularios de contatos por cliente]]></comment>
+	<position x="1000" y="1160"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="client_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="contact_type_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="form_type_id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="personal_label">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="personal_config">
+		<type name="text" length="0"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="contact_form_pkey" type="pk-constr" table="public.contact_form">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="form_type">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="1100" y="880"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="label_content" not-null="true">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="label_class">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="label_id">
+		<type name="varchar" length="255"/>
+	</column>
+	<column name="form_config" not-null="true">
+		<type name="text" length="255"/>
+	</column>
+	<column name="is_active" default-value="TRUE">
+		<type name="boolean" length="0"/>
+	</column>
+	<column name="created_at" not-null="true" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="updated_at" default-value="CURRENT_TIMESTAMP">
+		<type name="timestamp" length="0"/>
+	</column>
+	<constraint name="form_type_pkey" type="pk-constr" table="public.form_type">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="client_to_user" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.client" table="public.&quot;user&quot;">
+	<columns names="client_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="role_type_to_user_roles" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.role_type" table="public.user_roles">
+	<columns names="role_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="user_to_user_roles" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;user&quot;" table="public.user_roles">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="component_to_role_type_component" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.componet" table="public.role_type_component">
+	<columns names="component_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="role_type_to_role_type_component" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.role_type" table="public.role_type_component">
+	<columns names="role_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="person_type_to_person" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.person_type" table="public.person">
+	<columns names="person_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="user_to_person" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.&quot;user&quot;" table="public.person">
+	<columns names="user_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="person_to_partition" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.person" table="public.partition">
+	<columns names="person_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="client_to_partition" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.client" table="public.partition">
+	<columns names="client_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="partition_type_to_partition" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.partition_type" table="public.partition">
+	<columns names="partition_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="contact_type_to_contact" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.contact_type" table="public.contact">
+	<columns names="contact_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="person_to_contact" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.person" table="public.contact">
+	<columns names="person_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="client_to_contact_form" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.client" table="public.contact_form">
+	<columns names="client_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="contact_type_to_contact_form" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.contact_type" table="public.contact_form">
+	<columns names="contact_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="form_type_to_contact_form" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="public.form_type" table="public.contact_form">
+	<columns names="form_type_id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_user_roles_role_type" type="relfk"
+	 src-table="public.user_roles"
+	 dst-table="public.role_type" reference-fk="role_type_to_user_roles"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-1.62747" y="4.39844"/>
+	</label>
+</relationship>
+
+<relationship name="rel_user_roles_user" type="relfk"
+	 src-table="public.user_roles"
+	 dst-table="public.&quot;user&quot;" reference-fk="user_to_user_roles"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="86.2355" y="-18.3704"/>
+	</label>
+</relationship>
+
+<relationship name="rel_role_type_component_componet" type="relfk"
+	 src-table="public.role_type_component"
+	 dst-table="public.componet" reference-fk="component_to_role_type_component"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_role_type_component_role_type" type="relfk"
+	 src-table="public.role_type_component"
+	 dst-table="public.role_type" reference-fk="role_type_to_role_type_component"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="7.6694" y="12.8984"/>
+	</label>
+</relationship>
+
+<relationship name="rel_user_client" type="relfk"
+	 src-table="public.&quot;user&quot;"
+	 dst-table="public.client" reference-fk="client_to_user"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_person_person_type" type="relfk"
+	 src-table="public.person"
+	 dst-table="public.person_type" reference-fk="person_type_to_person"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_person_user" type="relfk"
+	 src-table="public.person"
+	 dst-table="public.&quot;user&quot;" reference-fk="user_to_person"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_partition_person" type="relfk"
+	 src-table="public.partition"
+	 dst-table="public.person" reference-fk="person_to_partition"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_partition_client" type="relfk"
+	 src-table="public.partition"
+	 dst-table="public.client" reference-fk="client_to_partition"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_partition_partition_type" type="relfk"
+	 src-table="public.partition"
+	 dst-table="public.partition_type" reference-fk="partition_type_to_partition"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_contact_contact_type" type="relfk"
+	 src-table="public.contact"
+	 dst-table="public.contact_type" reference-fk="contact_type_to_contact"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_contact_person" type="relfk"
+	 src-table="public.contact"
+	 dst-table="public.person" reference-fk="person_to_contact"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_contact_form_client" type="relfk"
+	 src-table="public.contact_form"
+	 dst-table="public.client" reference-fk="client_to_contact_form"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_contact_form_contact_type" type="relfk"
+	 src-table="public.contact_form"
+	 dst-table="public.contact_type" reference-fk="contact_type_to_contact_form"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_contact_form_form_type" type="relfk"
+	 src-table="public.contact_form"
+	 dst-table="public.form_type" reference-fk="form_type_to_contact_form"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
